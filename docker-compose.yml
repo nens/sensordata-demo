@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    ports:
+      - 7772:8000
+    environment:
+      # These can be passed from a .env on the server
+      - DEBUG
+      - SENTRY_DSN
