@@ -1,9 +1,8 @@
 import logging
 import os
-from typing import Any
 
 import sentry_sdk
-from flask import Flask, jsonify, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, url_for
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import check_password_hash
 
@@ -41,12 +40,7 @@ def index():
 @app.route("/historical-flood-risk-events/new/", methods=["POST"])
 @auth.login_required
 def new_flood_risk_event():
-    flood_risk_event = broker.HistoricalFloodRiskEvent(
-        title=request.form["title"],
-        scenario=request.form["scenario"],
-        bbox=request.form["bbox"],
-    )
-    broker.create_historical_flood_risk_event(flood_risk_event)
+    # Do something
     return redirect(url_for("historical_flood_risk_events"))
 
 
