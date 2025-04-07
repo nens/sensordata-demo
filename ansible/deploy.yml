@@ -1,0 +1,24 @@
+# Note: because this is an open source repo, I've ommitted the `inventory.txt` and
+# `provision.yml` :-) Those are symlinked.
+---
+- name: Deploy new version of the project setup to the server
+  hosts: web
+  remote_user: buildout
+  tasks:
+
+    - name: Checkout correct version from github
+      ansible.builtin.git:
+        accept_hostkey: true
+        dest: /srv/{{ site_name }}
+        repo: ssh://git@github.com/nens/sensordata-demo.git
+        version: "{{ checkout_name }}"
+
+    - name: Pull docker images
+      ansible.builtin.shell:  # noqa: command-instead-of-shell no-changed-when
+        cmd: "docker-compose pull"
+        chdir: /srv/{{ site_name }}
+
+    - name: Start/update dockers
+      ansible.builtin.shell:  # noqa: command-instead-of-shell no-changed-when
+        cmd: "docker-compose up -d"
+        chdir: /srv/{{ site_name }}
