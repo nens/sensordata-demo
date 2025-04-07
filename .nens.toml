@@ -1,5 +1,5 @@
 [meta]
 uses_python = true
-uses_ansible = false
+uses_ansible = true
 meta_version = "0.8.dev0"
 project_name = "sensordata-demo"
