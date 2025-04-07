@@ -18,6 +18,13 @@ For the moment, I'm aiming at the "sensorthings" standard as there's a good open
 Likewise, the sensorthings standard had quite some useful documentation on how to use it and how the data is structured. The connected systems documentation seemed to be a collection of urls meant to check the conformability to the spec, but not the actual spec. I probably haven't.
 
 
+## TODO
+
+- [x] Deploy the "hello world" version.
+- [ ] Add POST url to receive messages from chirpstack (initially just for logging those messages and to get the communication set up).
+- [ ] Add docker-compose file with FROST-server.
+
+
 ## Local dev setup
 
 Install `uv` and call `uv sync`. Enable the virtualenv with `source .venv/bin/activate`.
@@ -27,8 +34,6 @@ Testing and formatting happens with `pre-commit run --all`.
 Run the app with `python src/app.py` (assuming you've activated the virtualenv of course).
 
 
-## TODO
+## Deploy notes
 
-- Deploy the "hello world" version.
-- Add POST url to receive messages from chirpstack (initially just for logging those messages and to get the communication set up).
-- Add docker-compose file with FROST-server.
+(Only interesting for N&S). Regular ansible provision/deploy stuff. As this is an open source repo, the `provision.yml` and `inventory.txt` aren't stored here, they're only on Reinout's computer for now. Likewise the `.env` file with the `SENTRY_DSN`.
