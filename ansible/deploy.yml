@@ -18,6 +18,11 @@
         cmd: "docker-compose pull"
         chdir: /srv/{{ site_name }}
 
+    - name: Build docker image
+      ansible.builtin.shell:  # noqa: command-instead-of-shell no-changed-when
+        cmd: "docker-compose build"
+        chdir: /srv/{{ site_name }}
+
     - name: Start/update dockers
       ansible.builtin.shell:  # noqa: command-instead-of-shell no-changed-when
         cmd: "docker-compose up -d"
