@@ -42,7 +42,7 @@ def index():
     )
 
 
-@app.route("/from-chirpstack/", methods=["GET"])
+@app.route("/from-chirpstack/", methods=["POST"])
 @auth.login_required
 def handle_post_from_chirpstack():
     # First some debug logging.
