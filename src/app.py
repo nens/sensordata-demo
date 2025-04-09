@@ -2,15 +2,20 @@ import logging
 import os
 
 import sentry_sdk
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, render_template, request
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import check_password_hash
 
 USERS = {
     # from werkzeug.security import generate_password_hash
     # ^^^ Use this to create a hash.
-    "reinout": "scrypt:32768:8:DUMMY-DUMMY-DUMMY",
+    # "reinout": "scrypt:32768:8:DUMMY-DUMMY-DUMMY",
 }
+
+if "API_USER" in os.environ:
+    user = os.environ["API_USER"]
+    password_hash = os.environ["API_USER_HASH"]
+    USERS[user] = password_hash
 
 
 if "SENTRY_DSN" in os.environ:
@@ -37,14 +42,19 @@ def index():
     )
 
 
-@app.route("/historical-flood-risk-events/new/", methods=["POST"])
+@app.route("/from-chirpstack/", methods=["GET"])
 @auth.login_required
-def new_flood_risk_event():
-    # Do something
-    return redirect(url_for("historical_flood_risk_events"))
+def handle_post_from_chirpstack():
+    # First some debug logging.
+    logger.info("Incoming POST from chirpstack. Headers:")
+    logger.info(request.headers)
+    data = request.json
+    # For now, just log the data.
+    logger.info(data)
+    return {"dummy", "just logging for now"}, 201
 
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
-    debug = os.environ.get("DEBUG", "").lower() in ("true", "1")
-    app.run(host="0.0.0.0", port=8000, debug=debug)
+    app.run(host="0.0.0.0", port=8000, debug=True)
+    # ^^^ Production runs with gunicorn, so debug=True is fine here :-)

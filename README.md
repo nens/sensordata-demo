@@ -17,6 +17,8 @@ For the moment, I'm aiming at the "sensorthings" standard as there's a good open
 
 Likewise, the sensorthings standard had quite some useful documentation on how to use it and how the data is structured. The connected systems documentation seemed to be a collection of urls meant to check the conformability to the spec, but not the actual spec. I probably haven't.
 
+Regarding messages received from chirpstack: http+json *seems* the easiest way. If a protobuf binary message is send, apparently the full schema must be known+validated on our side. With json, se can just extract the fields we need.
+
 
 ## TODO
 
