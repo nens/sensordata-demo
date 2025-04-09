@@ -38,4 +38,9 @@ Run the app with `python src/app.py` (assuming you've activated the virtualenv o
 
 ## Deploy notes
 
-(Only interesting for N&S). Regular ansible provision/deploy stuff. As this is an open source repo, the `provision.yml` and `inventory.txt` aren't stored here, they're only on Reinout's computer for now. Likewise the `.env` file with the `SENTRY_DSN`.
+(Only interesting for N&S). Regular ansible provision/deploy stuff. As this is an open source repo, the `provision.yml` and `inventory.txt` aren't stored here, they're only on Reinout's computer for now.
+
+Environment variables are handled in the `.env` file.
+
+- `SENTRY_DSN` for traceback logging.
+- `API_USER` and `API_USER_HASH` for the user/password for the POST url.
