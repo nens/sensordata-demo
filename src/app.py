@@ -52,13 +52,15 @@ def handle_post_from_chirpstack():
     logger.info(request.headers)
     data = request.json
     # For now, just log the data.
+    logger.info("Incoming data:")
     logger.info(data)
     if not isinstance(data, list):
+        logger.warning("Not a list, rejecting it")
         return {"error": "Expecting a list of items"}, 400
     groundwater_measurements = process.extract_groundwater_measurements(data)
     logger.info(groundwater_measurements)
 
-    return {"dummy", "just logging for now"}, 201
+    return {"dummy": "just logging for now"}, 201
 
 
 if __name__ == "__main__":
