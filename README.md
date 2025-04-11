@@ -13,7 +13,10 @@ First steps:
 
 *Reinout using this section for some what-am-I-working-on comments and some initial impressions. This is not intended to be permanent.*
 
-For the moment, I'm aiming at the "sensorthings" standard as there's a good open source server for it, [Frauenhofer's FROST](https://fraunhoferiosb.github.io/FROST-Server/). The open source project suggested in the project documentation for the "connected systems" standard is a github branch of an existing project that last saw work two years ago.
+For the moment, I'm aiming at the "sensorthings" standard as there's a good open source server for it, [Frauenhofer's FROST](https://fraunhoferiosb.github.io/FROST-Server/).
+
+The open source project suggested in the project documentation for the "connected systems" standard is a github branch of an existing project that last saw work two years ago. But... there is an up-to-date version specifically for connected systems at https://github.com/52North/connected-systems-pygeoapi .
+
 
 Likewise, the sensorthings standard had quite some useful documentation on how to use it and how the data is structured. The connected systems documentation seemed to be a collection of urls meant to check the conformability to the spec, but not the actual spec. I probably haven't.
 
