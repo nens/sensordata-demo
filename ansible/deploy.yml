@@ -13,6 +13,11 @@
         repo: ssh://git@github.com/nens/sensordata-demo.git
         version: "{{ checkout_name }}"
 
+    - name: Stop dockers
+      ansible.builtin.shell:  # noqa: command-instead-of-shell no-changed-when
+        cmd: "docker-compose down"
+        chdir: /srv/{{ site_name }}
+
     - name: Pull docker images
       ansible.builtin.shell:  # noqa: command-instead-of-shell no-changed-when
         cmd: "docker-compose pull"

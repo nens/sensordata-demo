@@ -24,7 +24,8 @@ services:
   frost:
     image: fraunhoferiosb/frost-server:latest
     environment:
-      - serviceRootUrl=http://localhost:8080/FROST-Server/
+      # - serviceRootUrl=http://localhost:8080/FROST-Server/
+      - serviceRootUrl=https://sensordata-demo-frost.staging.lizard.net/
       - http_cors_enable=true
       - http_cors_allowed_origins=*
       - persistence_db_driver=org.postgresql.Driver
