@@ -62,6 +62,14 @@ def handle_post_from_chirpstack():
 
 
 if __name__ == "__main__":
+    # Direct dev debug run.
     logging.basicConfig(level=logging.DEBUG)
     app.run(host="0.0.0.0", port=8000, debug=True)
     # ^^^ Production runs with gunicorn, so debug=True is fine here :-)
+
+
+if __name__ != "__main__":
+    # Probably called through gunicorn.
+    gunicorn_logger = logging.getLogger("gunicorn.error")
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
