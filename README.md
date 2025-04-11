@@ -26,8 +26,9 @@ Regarding messages received from chirpstack: http+json *seems* the easiest way. 
 ## TODO
 
 - [x] Deploy the "hello world" version.
-- [ ] Add POST url to receive messages from chirpstack (initially just for logging those messages and to get the communication set up).
-- [ ] Add docker-compose file with FROST-server.
+- [x] Add POST url to receive messages from chirpstack (initially just for logging those messages and to get the communication set up).
+- [x] Add docker-compose file with FROST-server.
+- [ ] Actually send messages towards FROST.
 
 
 ## Local dev setup
@@ -43,7 +44,10 @@ Run the app with `python src/app.py` (assuming you've activated the virtualenv o
 
 (Only interesting for N&S). Regular ansible provision/deploy stuff. As this is an open source repo, the `provision.yml` and `inventory.txt` aren't stored here, they're only on Reinout's computer for now.
 
+Add `etc/htpasswd` file on the server.
+
 Environment variables are handled in the `.env` file.
 
 - `SENTRY_DSN` for traceback logging.
 - `API_USER` and `API_USER_HASH` for the user/password for the POST url.
+- TODO: `FROST_URL`.
