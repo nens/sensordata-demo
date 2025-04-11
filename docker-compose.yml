@@ -55,7 +55,7 @@ services:
     # Don't start this locally as it will miss the htpasswd config file.
     volumes:
       - ./etc/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./etc/htpasswd:/etc/nginx/htpasswd
+      - ./etc/htpasswd:/etc/htpasswd
     logging:
       options:
         max-size: "10m"
