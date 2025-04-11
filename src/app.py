@@ -6,6 +6,8 @@ from flask import Flask, render_template, request
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import check_password_hash
 
+import process
+
 USERS = {
     # from werkzeug.security import generate_password_hash
     # ^^^ Use this to create a hash.
@@ -51,6 +53,11 @@ def handle_post_from_chirpstack():
     data = request.json
     # For now, just log the data.
     logger.info(data)
+    if not isinstance(data, list):
+        return {"error": "Expecting a list of items"}, 400
+    groundwater_measurements = process.extract_groundwater_measurements(data)
+    logger.info(groundwater_measurements)
+
     return {"dummy", "just logging for now"}, 201
 
 
