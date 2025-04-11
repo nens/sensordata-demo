@@ -48,17 +48,15 @@ def index():
 @auth.login_required
 def handle_post_from_chirpstack():
     # First some debug logging.
-    logger.info("Incoming POST from chirpstack. Headers:")
-    logger.info(request.headers)
+    logger.info(f"Incoming POST from chirpstack. Headers: {request.headers}")
     data = request.json
     # For now, just log the data.
-    logger.info("Incoming data:")
-    logger.info(data)
+    logger.info(f"Incoming data: \n{data}")
     if not isinstance(data, list):
         logger.warning("Not a list, rejecting it")
         return {"error": "Expecting a list of items"}, 400
     groundwater_measurements = process.extract_groundwater_measurements(data)
-    logger.info(groundwater_measurements)
+    logger.info(f"Extracted groundwater measurements: {groundwater_measurements}")
 
     return {"dummy": "just logging for now"}, 201
 
