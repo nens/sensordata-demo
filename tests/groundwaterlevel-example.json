@@ -1,0 +1,627 @@
+[
+    {
+        "time": "2024-12-05T08:21:51.125+00:00",
+        "deviceInfo": {
+            "tenantId": "d3fa89ff-5e63-4377-ac1a-45b659ce49b3",
+            "tenantName": "Gemeente Rotterdam",
+            "applicationId": "b2d7c3ae-cab8-4b59-8b26-17d9565adfa2",
+            "applicationName": "010-Levelstick-skynet",
+            "deviceProfileId": "82ea7afa-b31e-4752-8fa0-fd87ba973072",
+            "deviceProfileName": "LevelstickSensoren",
+            "deviceName": "ls2135023",
+            "devEui": "3531383150308b12",
+            "deviceClassEnabled": "CLASS_A",
+            "tags": {}
+        },
+        "level": "WARNING",
+        "code": "UPLINK_F_CNT_RETRANSMISSION",
+        "description": "Uplink was flagged as re-transmission / frame-counter did not increment",
+        "context": {
+            "deduplication_id": "420cad7a-01fa-419e-96b2-4b486446f058"
+        }
+    },
+    {
+        "deduplicationId": "37cc04d6-a35b-4e54-8fdf-16236e639b41",
+        "time": "2024-12-05T08:21:51.125+00:00",
+        "deviceInfo": {
+            "tenantId": "d3fa89ff-5e63-4377-ac1a-45b659ce49b3",
+            "tenantName": "Gemeente Rotterdam",
+            "applicationId": "b2d7c3ae-cab8-4b59-8b26-17d9565adfa2",
+            "applicationName": "010-Levelstick-skynet",
+            "deviceProfileId": "82ea7afa-b31e-4752-8fa0-fd87ba973072",
+            "deviceProfileName": "LevelstickSensoren",
+            "deviceName": "ls2135023",
+            "devEui": "3531383150308b12",
+            "deviceClassEnabled": "CLASS_A",
+            "tags": {}
+        },
+        "devAddr": "fe004811",
+        "adr": true,
+        "dr": 5,
+        "fCnt": 2483,
+        "fPort": 1,
+        "confirmed": false,
+        "data": "AbQ1BPA=",
+        "object": {
+            "grondwaterdruk": 111669,
+            "grondwatertemperatuur": 12.64
+        },
+        "rxInfo": [
+            {
+                "gatewayId": "7276ff000b030916",
+                "uplinkId": 10895,
+                "nsTime": "2024-12-05T08:21:51.223052730+00:00",
+                "timeSinceGpsEpoch": "1417422129.125s",
+                "rssi": -123,
+                "snr": -7.2,
+                "channel": 1,
+                "board": 1,
+                "location": {
+                    "latitude": 51.97224426269531,
+                    "longitude": 4.133676052093506,
+                    "altitude": 33
+                },
+                "context": "3cK/ww==",
+                "metadata": {
+                    "region_config_id": "eu868",
+                    "region_common_name": "EU868"
+                },
+                "crcStatus": "CRC_OK"
+            },
+            {
+                "gatewayId": "6a1e3b228ae2a90c",
+                "uplinkId": 47141,
+                "gwTime": "2024-12-05T08:21:51.169+00:00",
+                "nsTime": "2024-12-05T08:21:51.189278059+00:00",
+                "rssi": -122,
+                "snr": -6.8,
+                "context": "ySV9BQ==",
+                "metadata": {
+                    "gateway_name": "breezy-pineapple-sawfish",
+                    "region_common_name": "EU868",
+                    "gateway_long": "4.133624655108791",
+                    "gateway_h3index": "8c196bb9072edff",
+                    "network": "helium_iot",
+                    "regi": "EU868",
+                    "gateway_id": "112vksk3PA36iqE6x6LHTrQU5Y2hWjXG4mRQpc8EehdNNDHAZyCJ",
+                    "gateway_lat": "51.976991314096999",
+                    "region_config_id": "eu868"
+                },
+                "crcStatus": "CRC_OK"
+            },
+            {
+                "gatewayId": "dcd1b5dcb5c53623",
+                "uplinkId": 33448,
+                "gwTime": "2024-12-05T08:21:51.147+00:00",
+                "nsTime": "2024-12-05T08:21:51.162296315+00:00",
+                "rssi": -106,
+                "snr": 3.5,
+                "context": "lPU1cg==",
+                "metadata": {
+                    "network": "helium_iot",
+                    "gateway_h3index": "8c196bb908a95ff",
+                    "region_config_id": "eu868",
+                    "gateway_long": "4.144536626723536",
+                    "gateway_name": "strong-cornflower-parrot",
+                    "gateway_id": "11k9dRJMxFdPu1tMJiMz8et5jitVQ9kXbtC4cBvUsDoUNSV1DCM",
+                    "regi": "EU868",
+                    "region_common_name": "EU868",
+                    "gateway_lat": "51.985135248530611"
+                },
+                "crcStatus": "CRC_OK"
+            },
+            {
+                "gatewayId": "1a53471331289857",
+                "uplinkId": 10895,
+                "nsTime": "2024-12-05T08:21:51.226635542+00:00",
+                "timeSinceGpsEpoch": "1417422129.125s",
+                "rssi": -123,
+                "snr": -7.2,
+                "channel": 1,
+                "board": 1,
+                "context": "3cK/ww==",
+                "metadata": {
+                    "region_common_name": "EU868",
+                    "thingsix_airtime_ms": "51",
+                    "thingsix_gateway_id": "0x95774ed044fe8e0a78bbda718389488672f7a11591fe4aaa3ea1f12c5eca573d",
+                    "region_config_id": "eu868",
+                    "thingsix_owner": "0x9b04F074773E64F9c0412376c5d60f94E38193Bc"
+                },
+                "crcStatus": "CRC_OK"
+            }
+        ],
+        "txInfo": {
+            "frequency": 867300000,
+            "modulation": {
+                "lora": {
+                    "bandwidth": 125000,
+                    "spreadingFactor": 7,
+                    "codeRate": "CR_4_5"
+                }
+            }
+        }
+    },
+    {
+        "deduplicationId": "9e461e08-bb4e-4011-a181-5310bb1d8f4d",
+        "time": "2024-12-05T04:21:49.331+00:00",
+        "deviceInfo": {
+            "tenantId": "d3fa89ff-5e63-4377-ac1a-45b659ce49b3",
+            "tenantName": "Gemeente Rotterdam",
+            "applicationId": "b2d7c3ae-cab8-4b59-8b26-17d9565adfa2",
+            "applicationName": "010-Levelstick-skynet",
+            "deviceProfileId": "82ea7afa-b31e-4752-8fa0-fd87ba973072",
+            "deviceProfileName": "LevelstickSensoren",
+            "deviceName": "ls2135023",
+            "devEui": "3531383150308b12",
+            "deviceClassEnabled": "CLASS_A",
+            "tags": {}
+        },
+        "devAddr": "fe004811",
+        "adr": true,
+        "dr": 5,
+        "fCnt": 2482,
+        "fPort": 1,
+        "confirmed": false,
+        "data": "AbWYBO8=",
+        "object": {
+            "grondwaterdruk": 112024,
+            "grondwatertemperatuur": 12.63
+        },
+        "rxInfo": [
+            {
+                "gatewayId": "dcd1b5dcb5c53623",
+                "uplinkId": 36834,
+                "gwTime": "2024-12-05T04:21:49.331+00:00",
+                "nsTime": "2024-12-05T04:21:49.342222192+00:00",
+                "rssi": -95,
+                "snr": 10.8,
+                "context": "OosbVQ==",
+                "metadata": {
+                    "gateway_name": "strong-cornflower-parrot",
+                    "gateway_h3index": "8c196bb908a95ff",
+                    "regi": "EU868",
+                    "gateway_lat": "51.985135248530611",
+                    "region_common_name": "EU868",
+                    "gateway_id": "11k9dRJMxFdPu1tMJiMz8et5jitVQ9kXbtC4cBvUsDoUNSV1DCM",
+                    "gateway_long": "4.144536626723536",
+                    "network": "helium_iot",
+                    "region_config_id": "eu868"
+                },
+                "crcStatus": "CRC_OK"
+            }
+        ],
+        "txInfo": {
+            "frequency": 868500000,
+            "modulation": {
+                "lora": {
+                    "bandwidth": 125000,
+                    "spreadingFactor": 7,
+                    "codeRate": "CR_4_5"
+                }
+            }
+        }
+    },
+    {
+        "deduplicationId": "3650cc70-0f9e-4790-ac65-9c9c4e989437",
+        "time": "2024-12-05T00:21:47.519+00:00",
+        "deviceInfo": {
+            "tenantId": "d3fa89ff-5e63-4377-ac1a-45b659ce49b3",
+            "tenantName": "Gemeente Rotterdam",
+            "applicationId": "b2d7c3ae-cab8-4b59-8b26-17d9565adfa2",
+            "applicationName": "010-Levelstick-skynet",
+            "deviceProfileId": "82ea7afa-b31e-4752-8fa0-fd87ba973072",
+            "deviceProfileName": "LevelstickSensoren",
+            "deviceName": "ls2135023",
+            "devEui": "3531383150308b12",
+            "deviceClassEnabled": "CLASS_A",
+            "tags": {}
+        },
+        "devAddr": "fe004811",
+        "adr": true,
+        "dr": 5,
+        "fCnt": 2481,
+        "fPort": 1,
+        "confirmed": false,
+        "data": "Aba5BPI=",
+        "object": {
+            "grondwatertemperatuur": 12.66,
+            "grondwaterdruk": 112313
+        },
+        "rxInfo": [
+            {
+                "gatewayId": "dcd1b5dcb5c53623",
+                "uplinkId": 38482,
+                "gwTime": "2024-12-05T00:21:47.519+00:00",
+                "nsTime": "2024-12-05T00:21:47.529782050+00:00",
+                "rssi": -104,
+                "snr": 8.2,
+                "context": "4CEBPg==",
+                "metadata": {
+                    "region_config_id": "eu868",
+                    "regi": "EU868",
+                    "gateway_name": "strong-cornflower-parrot",
+                    "network": "helium_iot",
+                    "gateway_lat": "51.985135248530611",
+                    "region_common_name": "EU868",
+                    "gateway_long": "4.144536626723536",
+                    "gateway_id": "11k9dRJMxFdPu1tMJiMz8et5jitVQ9kXbtC4cBvUsDoUNSV1DCM",
+                    "gateway_h3index": "8c196bb908a95ff"
+                },
+                "crcStatus": "CRC_OK"
+            }
+        ],
+        "txInfo": {
+            "frequency": 867500000,
+            "modulation": {
+                "lora": {
+                    "bandwidth": 125000,
+                    "spreadingFactor": 7,
+                    "codeRate": "CR_4_5"
+                }
+            }
+        }
+    },
+    {
+        "deduplicationId": "b08f3ff5-109e-43cf-8a2f-dae237c8003e",
+        "time": "2024-12-04T20:21:45.706+00:00",
+        "deviceInfo": {
+            "tenantId": "d3fa89ff-5e63-4377-ac1a-45b659ce49b3",
+            "tenantName": "Gemeente Rotterdam",
+            "applicationId": "b2d7c3ae-cab8-4b59-8b26-17d9565adfa2",
+            "applicationName": "010-Levelstick-skynet",
+            "deviceProfileId": "82ea7afa-b31e-4752-8fa0-fd87ba973072",
+            "deviceProfileName": "LevelstickSensoren",
+            "deviceName": "ls2135023",
+            "devEui": "3531383150308b12",
+            "deviceClassEnabled": "CLASS_A",
+            "tags": {}
+        },
+        "devAddr": "fe004811",
+        "adr": true,
+        "dr": 5,
+        "fCnt": 2480,
+        "fPort": 1,
+        "confirmed": false,
+        "data": "AbdKBPM=",
+        "object": {
+            "grondwaterdruk": 112458,
+            "grondwatertemperatuur": 12.67
+        },
+        "rxInfo": [
+            {
+                "gatewayId": "dcd1b5dcb5c53623",
+                "uplinkId": 8328,
+                "gwTime": "2024-12-04T20:21:45.706+00:00",
+                "nsTime": "2024-12-04T20:21:45.715499165+00:00",
+                "rssi": -104,
+                "snr": 8.5,
+                "context": "hbbWjw==",
+                "metadata": {
+                    "gateway_id": "11k9dRJMxFdPu1tMJiMz8et5jitVQ9kXbtC4cBvUsDoUNSV1DCM",
+                    "region_config_id": "eu868",
+                    "gateway_name": "strong-cornflower-parrot",
+                    "gateway_long": "4.144536626723536",
+                    "regi": "EU868",
+                    "region_common_name": "EU868",
+                    "gateway_h3index": "8c196bb908a95ff",
+                    "network": "helium_iot",
+                    "gateway_lat": "51.985135248530611"
+                },
+                "crcStatus": "CRC_OK"
+            }
+        ],
+        "txInfo": {
+            "frequency": 867500000,
+            "modulation": {
+                "lora": {
+                    "bandwidth": 125000,
+                    "spreadingFactor": 7,
+                    "codeRate": "CR_4_5"
+                }
+            }
+        }
+    },
+    {
+        "deduplicationId": "8f89d2c6-91e2-41a1-b03c-39aeb4cc0d9f",
+        "time": "2024-12-04T16:21:43.903+00:00",
+        "deviceInfo": {
+            "tenantId": "d3fa89ff-5e63-4377-ac1a-45b659ce49b3",
+            "tenantName": "Gemeente Rotterdam",
+            "applicationId": "b2d7c3ae-cab8-4b59-8b26-17d9565adfa2",
+            "applicationName": "010-Levelstick-skynet",
+            "deviceProfileId": "82ea7afa-b31e-4752-8fa0-fd87ba973072",
+            "deviceProfileName": "LevelstickSensoren",
+            "deviceName": "ls2135023",
+            "devEui": "3531383150308b12",
+            "deviceClassEnabled": "CLASS_A",
+            "tags": {}
+        },
+        "devAddr": "fe004811",
+        "adr": true,
+        "dr": 5,
+        "fCnt": 2479,
+        "fPort": 1,
+        "confirmed": false,
+        "data": "Abd/BPM=",
+        "object": {
+            "grondwatertemperatuur": 12.67,
+            "grondwaterdruk": 112511
+        },
+        "rxInfo": [
+            {
+                "gatewayId": "dcd1b5dcb5c53623",
+                "uplinkId": 31875,
+                "gwTime": "2024-12-04T16:21:43.903+00:00",
+                "nsTime": "2024-12-04T16:21:43.912658479+00:00",
+                "rssi": -104,
+                "snr": 9.8,
+                "context": "K0zLng==",
+                "metadata": {
+                    "region_common_name": "EU868",
+                    "gateway_lat": "51.985135248530611",
+                    "gateway_name": "strong-cornflower-parrot",
+                    "gateway_id": "11k9dRJMxFdPu1tMJiMz8et5jitVQ9kXbtC4cBvUsDoUNSV1DCM",
+                    "region_config_id": "eu868",
+                    "gateway_long": "4.144536626723536",
+                    "regi": "EU868",
+                    "network": "helium_iot",
+                    "gateway_h3index": "8c196bb908a95ff"
+                },
+                "crcStatus": "CRC_OK"
+            }
+        ],
+        "txInfo": {
+            "frequency": 867900000,
+            "modulation": {
+                "lora": {
+                    "bandwidth": 125000,
+                    "spreadingFactor": 7,
+                    "codeRate": "CR_4_5"
+                }
+            }
+        }
+    },
+    {
+        "deduplicationId": "82ae9004-a33a-4f3d-b68a-59ce5c20d714",
+        "time": "2024-12-04T12:21:42.093+00:00",
+        "deviceInfo": {
+            "tenantId": "d3fa89ff-5e63-4377-ac1a-45b659ce49b3",
+            "tenantName": "Gemeente Rotterdam",
+            "applicationId": "b2d7c3ae-cab8-4b59-8b26-17d9565adfa2",
+            "applicationName": "010-Levelstick-skynet",
+            "deviceProfileId": "82ea7afa-b31e-4752-8fa0-fd87ba973072",
+            "deviceProfileName": "LevelstickSensoren",
+            "deviceName": "ls2135023",
+            "devEui": "3531383150308b12",
+            "deviceClassEnabled": "CLASS_A",
+            "tags": {}
+        },
+        "devAddr": "fe004811",
+        "adr": true,
+        "dr": 5,
+        "fCnt": 2478,
+        "fPort": 1,
+        "confirmed": false,
+        "data": "AbdgBPE=",
+        "object": {
+            "grondwaterdruk": 112480,
+            "grondwatertemperatuur": 12.65
+        },
+        "rxInfo": [
+            {
+                "gatewayId": "1a53471331289857",
+                "uplinkId": 28891,
+                "nsTime": "2024-12-04T12:21:42.235107844+00:00",
+                "timeSinceGpsEpoch": "1417350120.093s",
+                "rssi": -124,
+                "snr": -3.5,
+                "channel": 4,
+                "board": 4,
+                "context": "N4rjcw==",
+                "metadata": {
+                    "thingsix_airtime_ms": "56",
+                    "thingsix_gateway_id": "0x95774ed044fe8e0a78bbda718389488672f7a11591fe4aaa3ea1f12c5eca573d",
+                    "region_common_name": "EU868",
+                    "region_config_id": "eu868",
+                    "thingsix_owner": "0x9b04F074773E64F9c0412376c5d60f94E38193Bc"
+                },
+                "crcStatus": "CRC_OK"
+            },
+            {
+                "gatewayId": "6a1e3b228ae2a90c",
+                "uplinkId": 14817,
+                "gwTime": "2024-12-04T12:21:42.114+00:00",
+                "nsTime": "2024-12-04T12:21:42.144993977+00:00",
+                "rssi": -119,
+                "snr": -3.5,
+                "context": "BRNXhg==",
+                "metadata": {
+                    "gateway_long": "4.133624655108791",
+                    "region_config_id": "eu868",
+                    "network": "helium_iot",
+                    "gateway_lat": "51.976991314096999",
+                    "gateway_id": "112vksk3PA36iqE6x6LHTrQU5Y2hWjXG4mRQpc8EehdNNDHAZyCJ",
+                    "region_common_name": "EU868",
+                    "regi": "EU868",
+                    "gateway_name": "breezy-pineapple-sawfish",
+                    "gateway_h3index": "8c196bb9072edff"
+                },
+                "crcStatus": "CRC_OK"
+            },
+            {
+                "gatewayId": "dcd1b5dcb5c53623",
+                "uplinkId": 38465,
+                "gwTime": "2024-12-04T12:21:42.106+00:00",
+                "nsTime": "2024-12-04T12:21:42.117444774+00:00",
+                "rssi": -104,
+                "snr": 9.2,
+                "context": "0OLpVw==",
+                "metadata": {
+                    "regi": "EU868",
+                    "gateway_long": "4.144536626723536",
+                    "region_config_id": "eu868",
+                    "gateway_id": "11k9dRJMxFdPu1tMJiMz8et5jitVQ9kXbtC4cBvUsDoUNSV1DCM",
+                    "gateway_h3index": "8c196bb908a95ff",
+                    "gateway_lat": "51.985135248530611",
+                    "region_common_name": "EU868",
+                    "gateway_name": "strong-cornflower-parrot",
+                    "network": "helium_iot"
+                },
+                "crcStatus": "CRC_OK"
+            },
+            {
+                "gatewayId": "7276ff000b030916",
+                "uplinkId": 28891,
+                "nsTime": "2024-12-04T12:21:42.205183644+00:00",
+                "timeSinceGpsEpoch": "1417350120.093s",
+                "rssi": -124,
+                "snr": -3.5,
+                "channel": 4,
+                "board": 4,
+                "location": {
+                    "latitude": 51.97224044799805,
+                    "longitude": 4.13364839553833,
+                    "altitude": 30
+                },
+                "context": "N4rjcw==",
+                "metadata": {
+                    "region_common_name": "EU868",
+                    "region_config_id": "eu868"
+                },
+                "crcStatus": "CRC_OK"
+            }
+        ],
+        "txInfo": {
+            "frequency": 867900000,
+            "modulation": {
+                "lora": {
+                    "bandwidth": 125000,
+                    "spreadingFactor": 7,
+                    "codeRate": "CR_4_5"
+                }
+            }
+        }
+    },
+    {
+        "deduplicationId": "82ae9004-a33a-4f3d-b68a-59ce5c20d714",
+        "time": "2024-12-04T12:21:42.093+00:00",
+        "deviceInfo": {
+            "tenantId": "d3fa89ff-5e63-4377-ac1a-45b659ce49b3",
+            "tenantName": "Gemeente Rotterdam",
+            "applicationId": "b2d7c3ae-cab8-4b59-8b26-17d9565adfa2",
+            "applicationName": "010-Levelstick-skynet",
+            "deviceProfileId": "82ea7afa-b31e-4752-8fa0-fd87ba973072",
+            "deviceProfileName": "LevelstickSensoren",
+            "deviceName": "ls2135023",
+            "devEui": "3531383150308b12",
+            "deviceClassEnabled": "CLASS_A",
+            "tags": {}
+        },
+        "margin": 6,
+        "externalPowerSource": true,
+        "batteryLevelUnavailable": false,
+        "batteryLevel": 0
+    },
+    {
+        "time": "2024-12-04T08:21:40.280225+00:00",
+        "deviceInfo": {
+            "tenantId": "d3fa89ff-5e63-4377-ac1a-45b659ce49b3",
+            "tenantName": "Gemeente Rotterdam",
+            "applicationId": "b2d7c3ae-cab8-4b59-8b26-17d9565adfa2",
+            "applicationName": "010-Levelstick-skynet",
+            "deviceProfileId": "82ea7afa-b31e-4752-8fa0-fd87ba973072",
+            "deviceProfileName": "LevelstickSensoren",
+            "deviceName": "ls2135023",
+            "devEui": "3531383150308b12",
+            "deviceClassEnabled": "CLASS_A",
+            "tags": {}
+        },
+        "level": "WARNING",
+        "code": "UPLINK_F_CNT_RETRANSMISSION",
+        "description": "Uplink was flagged as re-transmission / frame-counter did not increment",
+        "context": {
+            "deduplication_id": "6a8bd583-6540-485e-97ea-e5a5e7c70b5b"
+        }
+    },
+    {
+        "deduplicationId": "2972a6d2-1116-4b3f-b682-500fd43d5a44",
+        "time": "2024-12-04T08:21:40.301+00:00",
+        "deviceInfo": {
+            "tenantId": "d3fa89ff-5e63-4377-ac1a-45b659ce49b3",
+            "tenantName": "Gemeente Rotterdam",
+            "applicationId": "b2d7c3ae-cab8-4b59-8b26-17d9565adfa2",
+            "applicationName": "010-Levelstick-skynet",
+            "deviceProfileId": "82ea7afa-b31e-4752-8fa0-fd87ba973072",
+            "deviceProfileName": "LevelstickSensoren",
+            "deviceName": "ls2135023",
+            "devEui": "3531383150308b12",
+            "deviceClassEnabled": "CLASS_A",
+            "tags": {}
+        },
+        "devAddr": "fe004811",
+        "adr": true,
+        "dr": 5,
+        "fCnt": 2477,
+        "fPort": 1,
+        "confirmed": false,
+        "data": "AbcvBPM=",
+        "object": {
+            "grondwaterdruk": 112431,
+            "grondwatertemperatuur": 12.67
+        },
+        "rxInfo": [
+            {
+                "gatewayId": "6a1e3b228ae2a90c",
+                "uplinkId": 6540,
+                "gwTime": "2024-12-04T08:21:40.301+00:00",
+                "nsTime": "2024-12-04T08:21:40.321498830+00:00",
+                "rssi": -120,
+                "snr": -8,
+                "context": "qqk1Fw==",
+                "metadata": {
+                    "gateway_id": "112vksk3PA36iqE6x6LHTrQU5Y2hWjXG4mRQpc8EehdNNDHAZyCJ",
+                    "gateway_name": "breezy-pineapple-sawfish",
+                    "gateway_long": "4.133624655108791",
+                    "region_common_name": "EU868",
+                    "network": "helium_iot",
+                    "regi": "EU868",
+                    "region_config_id": "eu868",
+                    "gateway_lat": "51.976991314096999",
+                    "gateway_h3index": "8c196bb9072edff"
+                },
+                "crcStatus": "CRC_OK"
+            },
+            {
+                "gatewayId": "dcd1b5dcb5c53623",
+                "uplinkId": 8579,
+                "gwTime": "2024-12-04T08:21:40.299+00:00",
+                "nsTime": "2024-12-04T08:21:40.306682298+00:00",
+                "rssi": -103,
+                "snr": 6.5,
+                "context": "dni/oQ==",
+                "metadata": {
+                    "gateway_name": "strong-cornflower-parrot",
+                    "gateway_h3index": "8c196bb908a95ff",
+                    "gateway_long": "4.144536626723536",
+                    "region_common_name": "EU868",
+                    "network": "helium_iot",
+                    "gateway_id": "11k9dRJMxFdPu1tMJiMz8et5jitVQ9kXbtC4cBvUsDoUNSV1DCM",
+                    "region_config_id": "eu868",
+                    "regi": "EU868",
+                    "gateway_lat": "51.985135248530611"
+                },
+                "crcStatus": "CRC_OK"
+            }
+        ],
+        "txInfo": {
+            "frequency": 868300000,
+            "modulation": {
+                "lora": {
+                    "bandwidth": 125000,
+                    "spreadingFactor": 7,
+                    "codeRate": "CR_4_5"
+                }
+            }
+        }
+    }
+]
