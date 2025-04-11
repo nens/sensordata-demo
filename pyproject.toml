@@ -35,4 +35,5 @@ include = "src"
 dev = [
     "pre-commit>=4.2.0",
     "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
 ]
