@@ -15,4 +15,4 @@ RUN uv sync
 
 CMD ["gunicorn", "-b", "0.0.0.0:8000", "app:app"]
 HEALTHCHECK --interval=10s --timeout=3s \
-    CMD curl -f http://localhost:8000/ping || exit 1
+    CMD curl -f http://localhost:8000/ || exit 1
