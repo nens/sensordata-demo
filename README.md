@@ -17,7 +17,6 @@ For the moment, I'm aiming at the "sensorthings" standard as there's a good open
 
 The open source project suggested in the project documentation for the "connected systems" standard is a github branch of an existing project that last saw work two years ago. But... there is an up-to-date version specifically for connected systems at https://github.com/52North/connected-systems-pygeoapi .
 
-
 Likewise, the sensorthings standard had quite some useful documentation on how to use it and how the data is structured. The connected systems documentation seemed to be a collection of urls meant to check the conformability to the spec, but not the actual spec. I probably haven't.
 
 Regarding messages received from chirpstack: http+json *seems* the easiest way. If a protobuf binary message is send, apparently the full schema must be known+validated on our side. With json, se can just extract the fields we need.
@@ -29,6 +28,12 @@ Regarding messages received from chirpstack: http+json *seems* the easiest way. 
 - [x] Add POST url to receive messages from chirpstack (initially just for logging those messages and to get the communication set up).
 - [x] Add docker-compose file with FROST-server.
 - [ ] Actually send messages towards FROST.
+
+
+## Code structure
+
+- `app.py`: [flask](https://flask.palletsprojects.com) app, mostly for providing an API url to receive chirpstack messages.
+- `process.py`: process the incoming chirpstack messages and extract the info we want from them.
 
 
 ## Local dev setup
