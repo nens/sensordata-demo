@@ -1,5 +1,5 @@
-accesslog = "-"
-print_config = True
+# accesslog = "-"
+# print_config = True
 loglevel = "debug"
 
 # logconfig_dict = {
