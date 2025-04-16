@@ -64,8 +64,11 @@ def handle_post_from_chirpstack():
         logger.warning("Not a dict, rejecting it")
         return {"error": "Expecting a single item"}, 400
     groundwater_measurement = process.extract_groundwater_measurement(data)
+    if not groundwater_measurement:
+        msg = "Not a groundwater measurement, ignoring it."
+        logger.info(msg)
+        return {"msg": msg}, 200
     logger.info(f"Extracted groundwater measurement: {groundwater_measurement}")
-
     return {"dummy": "just logging for now"}, 201
 
 
