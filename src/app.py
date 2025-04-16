@@ -33,6 +33,7 @@ logger = logging.getLogger(__name__)
 # Basic auth handling.
 @auth.verify_password
 def verify_password(username, password):
+    logger.info(f"Verifying password for user {username}")
     if username in USERS and check_password_hash(USERS[username], password):
         return username
 
@@ -51,8 +52,8 @@ def frost_overview():
     )
 
 
+# @auth.login_required  (als tweede)
 @app.route("/from-chirpstack/", methods=["POST"])
-@auth.login_required
 def handle_post_from_chirpstack():
     # First some debug logging.
     logger.info(f"Incoming POST from chirpstack. Headers: {request.headers}")
