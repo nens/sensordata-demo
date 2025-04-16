@@ -4,9 +4,9 @@ Goal: figuring out applicability of two OGC standards for NL use cases. This rep
 
 First steps:
 
-- [ ] We have to recieve those measurements,
-- [ ] convert them to one of the two standards (sensorthings for now)
-- [ ] and recieve them in an OGC-compatible app.
+- [x] We have to recieve those measurements,
+- [x] convert them to one of the two standards (sensorthings for now)
+- [x] and recieve them in an OGC-compatible app.
 
 
 ## Work-in-progress comments
@@ -27,8 +27,8 @@ Regarding messages received from chirpstack: http+json *seems* the easiest way. 
 - [x] Deploy the "hello world" version.
 - [x] Add POST url to receive messages from chirpstack (initially just for logging those messages and to get the communication set up).
 - [x] Add docker-compose file with FROST-server.
-- [ ] Actually send messages towards FROST.
-
+- [x] Actually send messages towards FROST.
+- [ ] Try to add the connected-systems app, too.
 
 ## Code structure
 
