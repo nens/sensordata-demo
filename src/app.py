@@ -69,7 +69,10 @@ def handle_post_from_chirpstack():
         logger.info(msg)
         return {"msg": msg}, 200
     logger.info(f"Extracted groundwater measurement: {groundwater_measurement}")
-    return {"dummy": "just logging for now"}, 201
+    process.upload_groundwater_measurement(groundwater_measurement)
+    msg = "Uploaded pressure/temperature values to datastream"
+    logger.info(msg)
+    return {"msg": msg}, 201
 
 
 if __name__ == "__main__":
