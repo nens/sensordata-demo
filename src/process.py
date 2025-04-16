@@ -23,7 +23,7 @@ def _is_groundwater_measurement(item: dict) -> bool:
     """
     for first in ["time"]:
         if first not in item:
-            logger.debug(f"{first} not found in item")
+            logger.debug(f"'{first}' not found in item")
             return False
 
     for first, second in [
@@ -33,10 +33,10 @@ def _is_groundwater_measurement(item: dict) -> bool:
         ["object", "grondwatertemperatuur"],
     ]:
         if first not in item:
-            logger.debug(f"{first} not found in item")
+            logger.debug(f"'{first}' not found in item")
             return False
         if second not in item[first]:
-            logger.debug(f"{first}>{second} not found in item")
+            logger.debug(f"'{first}>{second}' not found in item")
             return False
 
     if item["deviceInfo"]["deviceProfileName"] != GROUNDWATER_DEVICE_NAME:
