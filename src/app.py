@@ -75,8 +75,9 @@ if __name__ == "__main__":
     # ^^^ Production runs with gunicorn, so debug=True is fine here :-)
 
 
-# if __name__ != "__main__":
-#     # Probably called through gunicorn.
-#     gunicorn_logger = logging.getLogger("gunicorn.error")
-#     app.logger.handlers = gunicorn_logger.handlers
-#     app.logger.setLevel(gunicorn_logger.level)
+if __name__ != "__main__":
+    # Probably called through gunicorn.
+    gunicorn_logger = logging.getLogger("gunicorn.error")
+    root_logger = logging.getLogger("")
+    root_logger.handlers = gunicorn_logger.handlers
+    root_logger.setLevel(gunicorn_logger.level)
