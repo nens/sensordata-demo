@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from process import extract_groundwater_measurements
+from process import extract_groundwater_measurement
 
 test_dir = Path(__file__).parent
 
@@ -14,9 +14,9 @@ def groundwater_data() -> list:
     return json.loads(example_file.read_text())
 
 
-def test_extract_groundwater_measurements1():
-    assert extract_groundwater_measurements([]) == []
+def test_extract_groundwater_measurement1(groundwater_data):
+    assert extract_groundwater_measurement(groundwater_data[1])
 
 
-def test_extract_groundwater_measurements2(groundwater_data):
-    assert len(extract_groundwater_measurements(groundwater_data)) == 7
+def test_extract_groundwater_measurement2(groundwater_data):
+    assert extract_groundwater_measurement(groundwater_data[0]) is None

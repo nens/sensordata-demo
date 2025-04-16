@@ -53,10 +53,8 @@ def _convert_to_groundwater_measurement(item: dict) -> GroundwaterMeasurement:
     )
 
 
-def extract_groundwater_measurements(data: list) -> list:
+def extract_groundwater_measurement(data: dict) -> GroundwaterMeasurement | None:
     """Return usable groundwater measurements from the incoming json data"""
-    return [
-        _convert_to_groundwater_measurement(item)
-        for item in data
-        if _is_groundwater_measurement(item)
-    ]
+    if not _is_groundwater_measurement(data):
+        return None
+    return _convert_to_groundwater_measurement(data)

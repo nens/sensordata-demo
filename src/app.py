@@ -60,11 +60,11 @@ def handle_post_from_chirpstack():
     data = request.json
     # For now, just log the data.
     logger.info(f"Incoming data: \n{data}")
-    if not isinstance(data, list):
-        logger.warning("Not a list, rejecting it")
-        return {"error": "Expecting a list of items"}, 400
-    groundwater_measurements = process.extract_groundwater_measurements(data)
-    logger.info(f"Extracted groundwater measurements: {groundwater_measurements}")
+    if not isinstance(data, dict):
+        logger.warning("Not a dict, rejecting it")
+        return {"error": "Expecting a single item"}, 400
+    groundwater_measurement = process.extract_groundwater_measurement(data)
+    logger.info(f"Extracted groundwater measurement: {groundwater_measurement}")
 
     return {"dummy": "just logging for now"}, 201
 
