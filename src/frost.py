@@ -34,9 +34,9 @@ def find_sensor(device_name: str) -> int | None:
     #         }
     #     ]
     # }
-    found_sensor = search_result["value"][
-        0
-    ]  # Just take the first (and hopefully only) one.
+
+    # Just take the first (and hopefully only) one.
+    found_sensor = search_result["value"][0]
     self_link = found_sensor["@iot.selfLink"]
     id = found_sensor["@iot.id"]
     logger.info(f"Found sensor id={id} for name '{device_name}': {self_link}")
@@ -51,9 +51,8 @@ def find_observed_property(property_name: str) -> int | None:
     search_result = r.json()
     if not search_result["value"]:
         return
-    found_observed_property = search_result["value"][
-        0
-    ]  # Just take the first (and hopefully only) one.
+    # Just take the first (and hopefully only) one.
+    found_observed_property = search_result["value"][0]
     self_link = found_observed_property["@iot.selfLink"]
     id = found_observed_property["@iot.id"]
     logger.info(
