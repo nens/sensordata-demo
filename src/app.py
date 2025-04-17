@@ -68,11 +68,10 @@ def handle_post_from_chirpstack():
         msg = "Not a proper measurement with values, ignoring it."
         logger.info(msg)
         return {"msg": msg}, 200
-    logger.info(f"Extracted {len(measurements)} measurements")
+    logger.info(f"Extracted {len(measurements)} measurements, trying to upload them")
     for measurement in measurements:
         process.upload_measurement(measurement)
-    msg = f"Uploaded {len(measurements)} values to datastream"
-    logger.info(msg)
+    msg = f"Received {len(measurements)} values"
     return {"msg": msg}, 201
 
 
