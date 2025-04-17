@@ -33,6 +33,8 @@ services:
       - persistence_db_username=sensorthings
       - persistence_db_password=OnlyInternalUseSoOk
       - persistence_autoUpdateDatabase=true
+      - auth.provider=de.fraunhofer.iosb.ilt.frostserver.auth.basic.BasicAuthProvider
+      - auth.autoUpdateDatabase=true
     ports:
       - 8080:8080
     depends_on:
