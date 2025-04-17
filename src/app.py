@@ -63,14 +63,15 @@ def handle_post_from_chirpstack():
     if not isinstance(data, dict):
         logger.warning("Not a dict, rejecting it")
         return {"error": "Expecting a single item"}, 400
-    groundwater_measurement = process.extract_groundwater_measurement(data)
-    if not groundwater_measurement:
-        msg = "Not a groundwater measurement, ignoring it."
+    measurements = process.extract_measurements(data)
+    if not measurements:
+        msg = "Not a proper measurement with values, ignoring it."
         logger.info(msg)
         return {"msg": msg}, 200
-    logger.info(f"Extracted groundwater measurement: {groundwater_measurement}")
-    process.upload_groundwater_measurement(groundwater_measurement)
-    msg = "Uploaded pressure/temperature values to datastream"
+    logger.info(f"Extracted {len(measurements)} measurements")
+    for measurement in measurements:
+        process.upload_measurement(measurement)
+    msg = f"Uploaded {len(measurements)} values to datastream"
     logger.info(msg)
     return {"msg": msg}, 201
 
