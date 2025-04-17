@@ -224,27 +224,3 @@ def test_extract_measurement2():
 
 def test_extract_measurement3():
     assert extract_measurements(EXAMPLE3) is None
-
-
-# def test_upload_groundwater_measurement1():
-#     groundwater_measurement = GroundwaterMeasurement(
-#         device_id="something",
-#         timestamp=datetime.datetime.now(),
-#         pressure=0,
-#         temperature=0,
-#     )
-#     with mock.patch("requests.post") as mocked_post:
-#         upload_groundwater_measurement(groundwater_measurement)
-#         mocked_post.assert_not_called()
-
-
-# def test_upload_groundwater_measurement2():
-#     groundwater_measurement = GroundwaterMeasurement(
-#         device_id="ls1815041",
-#         timestamp=datetime.datetime.now(),
-#         pressure=10,
-#         temperature=20,
-#     )
-#     with mock.patch("requests.post") as mocked_post:
-#         upload_groundwater_measurement(groundwater_measurement)
-#         mocked_post.assert_called()

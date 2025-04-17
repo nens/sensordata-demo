@@ -23,7 +23,7 @@ class Measurement(BaseModel):
     device_name: str
     timestamp: datetime.datetime
     property_name: str
-    value: float
+    value: float  # At the moment we just hardcode it to floats...
 
 
 def _is_measurement(item: dict) -> bool:
@@ -75,16 +75,9 @@ def extract_measurements(data: dict) -> list[Measurement] | None:
 
 
 def upload_measurement(measurement: Measurement):
-    if measurement.device_id not in CONFIGURED_DEVICES:
-        logger.debug("Device id is not the single hardcoded one: ignoring it")
-        return
     add_datastream_value(
-        datastream_id=PRESSURE_ID,
+        device_name=measurement.device_name,
+        property_name=measurement.property_name,
         timestamp=measurement.timestamp,
-        value=measurement.pressure,
-    )
-    add_datastream_value(
-        datastream_id=TEMPERATURE_ID,
-        timestamp=measurement.timestamp,
-        value=measurement.temperature,
+        value=measurement.value,
     )
