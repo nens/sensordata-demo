@@ -13,6 +13,6 @@ ENV PATH="/code/.venv/bin:$PATH"
 COPY . .
 RUN uv sync
 
-CMD ["gunicorn", "--bind=0.0.0.0:8000", "--log-level=debug", "app:app"]
+CMD ["gunicorn", "--bind=0.0.0.0:8000", "--log-level=info", "app:app"]
 HEALTHCHECK --interval=10s --timeout=3s \
     CMD curl -f http://localhost:8000/ || exit 1
