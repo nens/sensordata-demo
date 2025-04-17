@@ -55,10 +55,10 @@ def frost_overview():
 # @auth.login_required  (als tweede)
 @app.route("/from-chirpstack/", methods=["POST"])
 def handle_post_from_chirpstack():
-    # First some debug logging.
+    # First some debug logging: the auth headers we receive are not correct yet..
     logger.info(f"Incoming POST from chirpstack. Headers: {request.headers}")
     data = request.json
-    # For now, just log the data.
+    # Log the incoming data to figure out what we can do with it :-)
     logger.info(f"Incoming data: \n{data}")
     if not isinstance(data, dict):
         logger.warning("Not a dict, rejecting it")
