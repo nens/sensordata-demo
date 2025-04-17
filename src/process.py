@@ -5,17 +5,6 @@ from pydantic import BaseModel
 
 from frost import add_datastream_value
 
-# Hardcoded sensor ID, coupled with the two "datastream" IDs for the two properties.
-CONFIGURED_DEVICE_ID = "ls1815041"
-PRESSURE_ID = 2
-TEMPERATURE_ID = 3
-# Key: hardcoded sensor ID.
-# Value: dict of variable name (from GroundWaterMeasurement) and datastream ID.
-CONFIGURED_DEVICES = {
-    "ls1815041": {"pressure": 2, "temperature": 3},
-}
-
-
 logger = logging.getLogger(__name__)
 
 
