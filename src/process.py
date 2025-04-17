@@ -5,79 +5,86 @@ from pydantic import BaseModel
 
 from frost import add_datastream_value
 
-GROUNDWATER_DEVICE_NAME = "LevelstickSensoren"
-
 # Hardcoded sensor ID, coupled with the two "datastream" IDs for the two properties.
 CONFIGURED_DEVICE_ID = "ls1815041"
 PRESSURE_ID = 2
 TEMPERATURE_ID = 3
+# Key: hardcoded sensor ID.
+# Value: dict of variable name (from GroundWaterMeasurement) and datastream ID.
+CONFIGURED_DEVICES = {
+    "ls1815041": {"pressure": 2, "temperature": 3},
+}
+
 
 logger = logging.getLogger(__name__)
 
 
-class GroundwaterMeasurement(BaseModel):
-    device_id: str
+class Measurement(BaseModel):
+    device_name: str
     timestamp: datetime.datetime
-    pressure: float
-    temperature: float
+    property_name: str
+    value: float
 
 
-def _is_groundwater_measurement(item: dict) -> bool:
-    """Return whether it is a proper groundwater measurement including all fields
+def _is_measurement(item: dict) -> bool:
+    """Return whether it is a proper measurement including all fields we need
 
     The goal is to prevent the rest of the code from having to do too many checks
     whether dictionary fields exist.
     """
-    for first in ["time"]:
+    for first in ["time", "object"]:
         if first not in item:
-            logger.debug(f"'{first}' not found in item")
+            logger.info(f"'{first}' not found in item")
             return False
 
     for first, second in [
-        ["deviceInfo", "deviceProfileName"],
         ["deviceInfo", "deviceName"],
-        ["object", "grondwaterdruk"],
-        ["object", "grondwatertemperatuur"],
     ]:
         if first not in item:
-            logger.debug(f"'{first}' not found in item")
+            logger.info(f"'{first}' not found in item")
             return False
         if second not in item[first]:
-            logger.debug(f"'{first}>{second}' not found in item")
+            logger.info(f"'{first}>{second}' not found in item")
             return False
 
-    if item["deviceInfo"]["deviceProfileName"] != GROUNDWATER_DEVICE_NAME:
+    if not item["object"]:
+        logger.info("'object' key is empty, ignoring it")
         return False
     return True
 
 
-def _convert_to_groundwater_measurement(item: dict) -> GroundwaterMeasurement:
-    return GroundwaterMeasurement(
-        device_id=item["deviceInfo"]["deviceName"],
-        timestamp=item["time"],
-        pressure=item["object"]["grondwaterdruk"],
-        temperature=item["object"]["grondwatertemperatuur"],
-    )
-
-
-def extract_groundwater_measurement(data: dict) -> GroundwaterMeasurement | None:
+def extract_measurements(data: dict) -> list[Measurement] | None:
     """Return usable groundwater measurements from the incoming json data"""
-    if not _is_groundwater_measurement(data):
+    if not _is_measurement(data):
         return None
-    return _convert_to_groundwater_measurement(data)
+    result = []
+    device_name = data["deviceInfo"]["deviceName"]
+    timestamp = data["time"]
+    properties = data["object"]
+    for property_name in properties:
+        value = properties[property_name]
+        result.append(
+            Measurement(
+                device_name=device_name,
+                timestamp=timestamp,
+                property_name=property_name,
+                value=value,
+            )
+        )
+    return result
 
 
-def upload_groundwater_measurement(groundwater_measurement: GroundwaterMeasurement):
-    if groundwater_measurement.device_id != CONFIGURED_DEVICE_ID:
+def upload_measurement(measurement: Measurement):
+    if measurement.device_id not in CONFIGURED_DEVICES:
         logger.debug("Device id is not the single hardcoded one: ignoring it")
         return
     add_datastream_value(
         datastream_id=PRESSURE_ID,
-        timestamp=groundwater_measurement.timestamp,
-        value=groundwater_measurement.pressure,
+        timestamp=measurement.timestamp,
+        value=measurement.pressure,
     )
     add_datastream_value(
         datastream_id=TEMPERATURE_ID,
-        timestamp=groundwater_measurement.timestamp,
-        value=groundwater_measurement.temperature,
+        timestamp=measurement.timestamp,
+        value=measurement.temperature,
     )
