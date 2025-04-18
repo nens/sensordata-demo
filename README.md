@@ -2,38 +2,26 @@
 
 Goal: figuring out applicability of two OGC standards for NL use cases. This repo is for [Nelen & Schuurmans](https://www.nelen-schuurmans.nl) to run tests based on Rotterdam's groundwater data. The groundwater measurements are send via LORA to [chirpstack](https://www.chirpstack.io/), which will send it to us.
 
-First steps:
 
-- [x] We have to recieve those measurements,
-- [x] convert them to one of the two standards (sensorthings for now)
-- [x] and recieve them in an OGC-compatible app.
+## External servers/services
 
+We implemented the "sensorthings" standard as there's a good open source server for it,
+[Frauenhofer's FROST](https://fraunhoferiosb.github.io/FROST-Server/). We installed it with "docker compose". The server is online, but only available from our network as setting up proper authentication/authorisation would take too much time.
 
-## Work-in-progress comments
+The open source project suggested in the project documentation for the "connected systems" standard is a github branch of an existing project that last saw work two years ago. But... there is an up-to-date version specifically for connected systems at https://github.com/52North/connected-systems-pygeoapi . We tried getting that to work based on the project's suggested "docker compose" approach, but the resulting site was not functional. We've submitted [a detailed bug report](https://github.com/52North/connected-systems-pygeoapi/issues/7) and received answer that the public docker images haven't been updated and that the current version is faulty. That's why we haven't included "connected systems" in our actual demo.
 
-*Reinout using this section for some what-am-I-working-on comments and some initial impressions. This is not intended to be permanent.*
+The sensorthings standard has quite some useful documentation on how to use it and how the data is structured.
 
-For the moment, I'm aiming at the "sensorthings" standard as there's a good open source server for it, [Frauenhofer's FROST](https://fraunhoferiosb.github.io/FROST-Server/).
+Regarding messages received from chirpstack: http+json *seems* the easiest way. If a protobuf binary message is send, apparently the full schema must be known+validated on our side. With json, we can just extract the fields we need. http+json was also Rotterdam's preferred approach. So we created a simple web app (see `app.py` below) with a URL where Rotterdam could send their messages to.
 
-The open source project suggested in the project documentation for the "connected systems" standard is a github branch of an existing project that last saw work two years ago. But... there is an up-to-date version specifically for connected systems at https://github.com/52North/connected-systems-pygeoapi .
+Chirpstack allows extra http headers to be configured on the outgoing messages. This is a flexible scheme that allows all sorts of authentication schemes. We're using "http basic auth" which simply means user/password. An extra header `Authorization` with a value like `Basic abcbase64encoded123=` is quickly added to the chirpstack configuration for our URL.
 
-Likewise, the sensorthings standard had quite some useful documentation on how to use it and how the data is structured. The connected systems documentation seemed to be a collection of urls meant to check the conformability to the spec, but not the actual spec. I probably haven't.
-
-Regarding messages received from chirpstack: http+json *seems* the easiest way. If a protobuf binary message is send, apparently the full schema must be known+validated on our side. With json, se can just extract the fields we need.
-
-
-## TODO
-
-- [x] Deploy the "hello world" version.
-- [x] Add POST url to receive messages from chirpstack (initially just for logging those messages and to get the communication set up).
-- [x] Add docker-compose file with FROST-server.
-- [x] Actually send messages towards FROST.
-- [ ] Try to add the connected-systems app, too.
 
 ## Code structure
 
 - `app.py`: [flask](https://flask.palletsprojects.com) app, mostly for providing an API url to receive chirpstack messages.
-- `process.py`: process the incoming chirpstack messages and extract the info we want from them.
+- `process.py`: process the incoming chirpstack messages and extract the info we want from them. This means filtering messages: which have measurements and which are just administration? A message can contain multiple values at the same time, so it is split into separate "measurements".
+- `frost.py`: query the FROST sensorthings api and post new measurements to datastreams. For every measurement, we look for a matching sensorthings `sensor` based on name. Likewise for an `observed property`. Then we query for a `datastream` based on the ID of the sensor and observed property. Lastly we add the measurement's value to the datastream.
 
 
 ## Local dev setup
@@ -55,4 +43,4 @@ Environment variables are handled in the `.env` file.
 
 - `SENTRY_DSN` for traceback logging.
 - `API_USER` and `API_USER_HASH` for the user/password for the POST url.
-- TODO: `FROST_URL`.
+- `FROST_URL` with the base url for the FROST sensorthings server (Like `https://user:pass@frost-server-url/FROST-Server/v1.1/`, note the trailing slash).
