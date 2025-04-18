@@ -52,8 +52,8 @@ def frost_overview():
     )
 
 
-# @auth.login_required  (als tweede)
 @app.route("/from-chirpstack/", methods=["POST"])
+@auth.login_required
 def handle_post_from_chirpstack():
     # First some debug logging: the auth headers we receive are not correct yet..
     logger.info(f"Incoming POST from chirpstack. Headers: {request.headers}")
