@@ -34,6 +34,7 @@ services:
       - persistence_db_password=OnlyInternalUseSoOk
       - persistence_autoUpdateDatabase=true
       - auth.provider=de.fraunhofer.iosb.ilt.frostserver.auth.basic.BasicAuthProvider
+      - auth.allowAnonymousRead=true
       - auth.autoUpdateDatabase=true
       - auth.db.url=jdbc:postgresql://database:5432/sensorthings
       - auth.db.username=sensorthings
