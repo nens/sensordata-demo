@@ -39,6 +39,7 @@ services:
       - auth.db.url=jdbc:postgresql://database:5432/sensorthings
       - auth.db.username=sensorthings
       - auth.db.password=OnlyInternalUseSoOk
+      - plugins.openApi.enable=true
     ports:
       - 8080:8080
     depends_on:
