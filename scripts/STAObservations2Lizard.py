@@ -32,21 +32,26 @@ res = requests.get(
     url=LIZARD_BASE_URL + f"locations/?organisation__uuid={LIZARD_ORG_UUID}",
     headers=liz_headers,
 )
-locList = []
+locations = []
 if res.status_code == 200:
-    for loc in res.json()["results"]:
-        locList.append(
-            {"loc_uuid": loc["uuid"], "loc_code": loc["code"], "timeseries": []}
+    for location in res.json()["results"]:
+        locations.append(
+            {
+                "loc_uuid": location["uuid"],
+                "loc_code": location["code"],
+                "timeseries": [],
+            }
         )
 locCnt = 0
-for loc in locList:
+for location in locations:
     res = requests.get(
-        url=LIZARD_BASE_URL + "timeseries/?location__uuid={}".format(loc["loc_uuid"]),
+        url=LIZARD_BASE_URL
+        + "timeseries/?location__uuid={}".format(location["loc_uuid"]),
         headers=liz_headers,
     )
     if res.status_code == 200:
         for ts in res.json()["results"]:
-            locList[locCnt]["timeseries"].append(
+            locations[locCnt]["timeseries"].append(
                 {
                     "ts_uuid": ts["uuid"],
                     "ts_obstype": ts["observation_type"]["code"],
@@ -57,16 +62,16 @@ for loc in locList:
 
 ### Find corresponding STA Datastreams based on FeatureOfInterest and ObservedProperty
 locCnt = 0
-for loc in locList:
+for location in locations:
     res = requests.get(
         url=STA_BASE_URL
-        + "/Things?$filter=name%20eq%20%27{}%27".format(loc["loc_code"]),
+        + "/Things?$filter=name%20eq%20%27{}%27".format(location["loc_code"]),
         headers=sta_headers,
     )
     thingId = res.json()["value"][0]["@iot.id"]
-    locList[locCnt].update({"thing_id": thingId})
+    locations[locCnt].update({"thing_id": thingId})
     tsCnt = 0
-    for ts in loc["timeseries"]:
+    for ts in location["timeseries"]:
         res = requests.get(
             url=STA_BASE_URL
             + "/ObservedProperties?$filter=name%20eq%20%27{}%27".format(
@@ -75,18 +80,18 @@ for loc in locList:
             headers=sta_headers,
         )
         ObsPropId = res.json()["value"][0]["@iot.id"]
-        locList[locCnt]["timeseries"][tsCnt].update({"obsprop_id": ObsPropId})
+        locations[locCnt]["timeseries"][tsCnt].update({"obsprop_id": ObsPropId})
         tsCnt += 1
     locCnt += 1
 
 
 ### Collect Observations from STA Datastreams and POST to Lizard
-for loc in locList:
-    for ts in loc["timeseries"]:
+for location in locations:
+    for ts in location["timeseries"]:
         url = (
             STA_BASE_URL
             + "/Datastreams?$filter=ObservedProperty/"
-            + f"id%20eq%20{ts['obsprop_id']}%20and%20Thing/id%20eq%20{loc['thing_id']}"
+            + f"id%20eq%20{ts['obsprop_id']}%20and%20Thing/id%20eq%20{location['thing_id']}"
         )
 
         res = requests.get(
