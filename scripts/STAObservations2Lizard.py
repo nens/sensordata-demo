@@ -92,7 +92,9 @@ for location in locations:
             url=url,
             headers=sta_headers,
         )
-        datastream_ids = [datastream["@iot.id"] for datastream in res.json()["value"]]
+        datastream_ids = [
+            str(datastream["@iot.id"]) for datastream in res.json()["value"]
+        ]
         ### GET Observations
         url = STA_BASE_URL + "/Observations?$filter=Datastream/id%20in%20("
         url += ",%20".join(datastream_ids)
