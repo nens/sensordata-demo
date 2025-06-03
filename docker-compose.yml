@@ -15,6 +15,9 @@ services:
       - API_USER
       - API_USER_HASH
       - FROST_URL
+      # Used for the lizard upload script
+      - LIZARD_PASSWORD
+      - STA_PASSWORD
     logging:
       options:
         max-size: "10m"
