@@ -33,30 +33,34 @@ res = requests.get(
     headers=liz_headers,
 )
 locations = []
-if res.status_code == 200:
-    for location in res.json()["results"]:
-        locations.append(
-            {
-                "loc_uuid": location["uuid"],
-                "loc_code": location["code"],
-                "timeseries": [],
-            }
-        )
+res.raise_for_status()
+
+for location in res.json()["results"]:
+    locations.append(
+        {
+            "loc_uuid": location["uuid"],
+            "loc_code": location["code"],
+            "timeseries": [],
+        }
+    )
+
+print(f"Found {len(locations)} locations")
+
 for location in locations:
     res = requests.get(
         url=LIZARD_BASE_URL
         + "timeseries/?location__uuid={}".format(location["loc_uuid"]),
         headers=liz_headers,
     )
-    if res.status_code == 200:
-        for timeserie in res.json()["results"]:
-            location["timeseries"].append(
-                {
-                    "ts_uuid": timeserie["uuid"],
-                    "ts_obstype": timeserie["observation_type"]["code"],
-                    "ts_end": timeserie["end"],
-                }
-            )
+    res.raise_for_status()
+    for timeserie in res.json()["results"]:
+        location["timeseries"].append(
+            {
+                "ts_uuid": timeserie["uuid"],
+                "ts_obstype": timeserie["observation_type"]["code"],
+                "ts_end": timeserie["end"],
+            }
+        )
 
 ### Find corresponding STA Datastreams based on FeatureOfInterest and ObservedProperty
 for location in locations:
@@ -65,6 +69,7 @@ for location in locations:
         + "/Things?$filter=name%20eq%20%27{}%27".format(location["loc_code"]),
         headers=sta_headers,
     )
+    res.raise_for_status()
     thingId = res.json()["value"][0]["@iot.id"]
     location.update({"thing_id": thingId})
     for timeserie in location["timeseries"]:
@@ -75,6 +80,7 @@ for location in locations:
             ),
             headers=sta_headers,
         )
+        res.raise_for_status()
         ObsPropId = res.json()["value"][0]["@iot.id"]
         timeserie["obsprop_id"] = ObsPropId
 
@@ -92,6 +98,7 @@ for location in locations:
             url=url,
             headers=sta_headers,
         )
+        res.raise_for_status()
         datastream_ids = [
             str(datastream["@iot.id"]) for datastream in res.json()["value"]
         ]
@@ -111,6 +118,7 @@ for location in locations:
         ### POST Observations to Lizard Timeseries objects
         url = LIZARD_BASE_URL + "timeseries/{}/events/".format(timeserie["ts_uuid"])
         res = requests.post(url=url, headers=liz_headers, data=json.dumps(liz_events))
+        res.raise_for_status()
         print(
             f"Timeseries with UUID {timeserie['ts_uuid']} updated with {len(liz_events)} events."
         )
