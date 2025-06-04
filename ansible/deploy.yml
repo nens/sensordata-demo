@@ -37,4 +37,4 @@
       ansible.builtin.cron:
         name: "Lizard update script"
         minute: "*/30"
-        job: "cd /srv/{{ site_name }} && docker-compose run --rm app python scripts/STAObservations2Lizard.py > /tmp/cron.log 2>&1"
+        job: "cd /srv/{{ site_name }} && docker-compose run --rm app python scripts/STAObservations2Lizard.py >> /tmp/cron.log 2>&1"
