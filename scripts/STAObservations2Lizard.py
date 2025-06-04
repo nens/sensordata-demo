@@ -117,9 +117,13 @@ for location in locations:
             )
         ### POST Observations to Lizard Timeseries objects
         url = LIZARD_BASE_URL + "timeseries/{}/events/".format(timeserie["ts_uuid"])
-        res = requests.post(url=url, headers=liz_headers, data=json.dumps(liz_events))
-        print(f"liz_events: {liz_events}")
-        res.raise_for_status()
-        print(
-            f"Timeseries with UUID {timeserie['ts_uuid']} updated with {len(liz_events)} events."
-        )
+        if liz_events:
+            res = requests.post(
+                url=url, headers=liz_headers, data=json.dumps(liz_events)
+            )
+            res.raise_for_status()
+            print(
+                f"Timeseries with UUID {timeserie['ts_uuid']} updated with {len(liz_events)} events."
+            )
+        else:
+            print(f"Skipped timeseries with UUID {timeserie['ts_uuid']}: no new events")
