@@ -4,6 +4,7 @@ import os
 import sentry_sdk
 from flask import Flask, render_template, request
 from flask_httpauth import HTTPBasicAuth
+from requests.exceptions import ConnectTimeout
 from werkzeug.security import check_password_hash
 
 import process
@@ -70,7 +71,10 @@ def handle_post_from_chirpstack():
         return {"msg": msg}, 200
     logger.info(f"Extracted {len(measurements)} measurements, trying to upload them")
     for measurement in measurements:
-        process.upload_measurement(measurement)
+        try:
+            process.upload_measurement(measurement)
+        except ConnectTimeout:
+            pass  # This was filling sentry every half hour
     msg = f"Received {len(measurements)} values"
     return {"msg": msg}, 201
 
