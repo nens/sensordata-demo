@@ -15,7 +15,7 @@ if not URL:
 def find_sensor(device_name: str) -> int | None:
     """Return id of sensor, if found"""
     url = f"{URL}Sensors?$filter=name eq '{device_name}'"
-    r = requests.get(url)
+    r = requests.get(url, timeout=10)
     r.raise_for_status()
     search_result = r.json()
     if not search_result["value"]:
@@ -46,7 +46,7 @@ def find_sensor(device_name: str) -> int | None:
 def find_observed_property(property_name: str) -> int | None:
     """Return id of observed property, if found"""
     url = f"{URL}ObservedProperties?$filter=name eq '{property_name}'"
-    r = requests.get(url)
+    r = requests.get(url, timeout=10)
     r.raise_for_status()
     search_result = r.json()
     if not search_result["value"]:
@@ -63,7 +63,7 @@ def find_observed_property(property_name: str) -> int | None:
 
 def find_datastream(sensor_id: int, observed_property_id: int) -> int | None:
     url = f"{URL}Datastreams?$filter=ObservedProperty/id eq {observed_property_id} and Sensor/id eq {sensor_id}"
-    r = requests.get(url)
+    r = requests.get(url, timeout=10)
     r.raise_for_status()
     search_result = r.json()
     if not search_result["value"]:
@@ -98,7 +98,7 @@ def add_datastream_value(
 
     url = URL + f"Datastreams({datastream_id})/Observations"
     payload = {"phenomenonTime": timestamp.isoformat(), "result": value}
-    r = requests.post(url=url, json=payload)
+    r = requests.post(url=url, json=payload, timeout=10)
     r.raise_for_status()
     logger.info(f"Added value ({value}) to datestream, timestamp={timestamp}")
 
